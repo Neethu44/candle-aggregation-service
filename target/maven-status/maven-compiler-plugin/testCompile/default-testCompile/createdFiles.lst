@@ -1,0 +1,4 @@
+com/candle/generator/MarketDataGeneratorTest.class
+com/candle/mapper/HistoryMapperTest.class
+com/candle/controller/HistoryControllerTest.class
+com/candle/service/InMemoryCandleAggregatorTest.class

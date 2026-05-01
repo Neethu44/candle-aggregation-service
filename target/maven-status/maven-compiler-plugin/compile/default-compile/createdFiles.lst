@@ -1,0 +1,12 @@
+com/candle/generator/MarketDataGenerator.class
+com/candle/model/HistoryResponse.class
+com/candle/mapper/HistoryMapper.class
+com/candle/controller/HistoryController.class
+com/candle/Application.class
+com/candle/service/CandleAggregator.class
+com/candle/model/BidAskEvent.class
+com/candle/service/InMemoryCandleAggregator.class
+com/candle/model/Candle.class
+com/candle/config/AsyncConfig.class
+com/candle/model/Interval.class
+com/candle/config/ShedLockConfig.class
