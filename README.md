@@ -1,10 +1,10 @@
-# 📊 Candle Aggregation Service
+# Candle Aggregation Service
 
 A high-performance backend service built with Spring Boot that ingests a continuous stream of bid/ask market data, aggregates it into candlestick (OHLCV) format, and exposes a REST API for historical retrieval.
 
 The system is designed to simulate real-world trading workloads with concurrent ingestion, low-latency processing, and efficient in-memory storage.
 
-## 🚀 Architecture Overview
+## Architecture Overview
 ```text
 Market Data Generator
         ↓
@@ -17,7 +17,7 @@ In-Memory Store (Concurrent Maps)
 REST API (/history)
 ```
 
-## ⚙️ Tech Stack
+## Tech Stack
 - **Spring Boot** – REST API and application framework
 - **ConcurrentHashMap** – Top-level structure for symbol + interval storage
 - **ConcurrentSkipListMap** – Time-ordered candle storage with efficient range queries
@@ -25,7 +25,7 @@ REST API (/history)
 - **Scheduled Executor** – Simulated high-frequency market data generator
 - **ShedLock + H2** – Prevents duplicate scheduled execution across instances
 
-## 🧠 Core Design
+## Core Design
 
 ### 1. Data Ingestion
 - A scheduled background task generates bid/ask events at high frequency.
@@ -64,7 +64,7 @@ Enables:
 - Ensures high throughput under concurrent writes
 - Bounded thread pool prevents resource exhaustion under load
 
-## 📡 API
+## API
 
 ### Get Historical Candles
 `GET /history`
@@ -103,7 +103,7 @@ GET /history?symbol=BTC-USD&interval=1m&from=1620000000&to=1620000600
 - `c` → close prices
 - `v` → volume (number of events per interval)
 
-## 🧪 Running the Application
+## Running the Application
 
 **Prerequisites**
 - Java 17+
@@ -123,13 +123,13 @@ Application starts at: `http://localhost:8080`
 
 A background generator will begin simulating market data automatically.
 
-## ✅ Running Tests
+## Running Tests
 ```bash
 mvn test
 ```
 Includes unit tests validating core aggregation logic.
 
-## 🌟 Bonus Features
+## Bonus Features
 
 ### 1. Distributed Scheduler Safety
 - ShedLock ensures only one instance runs the scheduled generator
@@ -152,31 +152,31 @@ The system is designed to evolve into a scalable architecture:
   - Horizontal scaling by symbol partitioning
   - Periodic persistence using optimistic locking
 
-## ⚠️ Assumptions & Trade-offs
+## Assumptions & Trade-offs
 - **In-Memory Storage**: Fast but not persistent. Suitable for simulation, not production-scale history.
 - **Timestamp Precision**: Input: milliseconds. Output: normalized to seconds (interval-based).
 - **Mid-Price Aggregation**: Uses `(bid + ask) / 2`. Simplifies candle generation vs separate bid/ask candles.
 
-## ⚡ Edge Cases Considered
+## Edge Cases Considered
 - Concurrent updates to same candle interval
 - High-frequency event bursts
 - Empty intervals (not returned in response)
 - Thread pool backpressure handling
 
-## 🚧 Limitations
+## Limitations
 - No long-term persistence
 - No eviction strategy (memory grows over time)
 - No handling for out-of-order or late-arriving events
 - Single-node in-memory design (not horizontally partitioned)
 
-## 📌 Future Improvements
+## Future Improvements
 - Add Kafka for real-time ingestion
 - Implement Redis caching layer
 - Persist completed candles to database
 - Handle out-of-order events with watermarking
 - Introduce retention and eviction policies
 
-## 💡 Summary
+## Summary
 This project demonstrates:
 - Concurrent data processing in Java
 - Efficient in-memory time-series aggregation
