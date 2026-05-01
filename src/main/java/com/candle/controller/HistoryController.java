@@ -53,9 +53,7 @@ public class HistoryController {
             enumInterval = Interval.fromCode(interval);
         } catch (IllegalArgumentException e) {
             log.warn("Rejected request: Invalid interval provided '{}' for symbol '{}'", interval, symbol);
-            return ResponseEntity.badRequest().body(
-                    new HistoryResponse("error_invalid_interval", List.of(), List.of(), List.of(), List.of(), List.of(), List.of())
-            );
+            return ResponseEntity.badRequest().body(HistoryResponse.error("error_invalid_interval"));
         }
 
         List<Candle> candles = candleAggregator.getHistory(symbol, enumInterval, from, to);

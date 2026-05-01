@@ -10,4 +10,11 @@ public record HistoryResponse(
     List<Double> l,
     List<Double> c,
     List<Long> v
-) {}
+) {
+    /**
+     * Creates an error response with empty arrays to maintain schema consistency.
+     */
+    public static HistoryResponse error(String status) {
+        return new HistoryResponse(status, List.of(), List.of(), List.of(), List.of(), List.of(), List.of());
+    }
+}

@@ -2,6 +2,7 @@ com/candle/generator/MarketDataGenerator.class
 com/candle/model/HistoryResponse.class
 com/candle/mapper/HistoryMapper.class
 com/candle/controller/HistoryController.class
+com/candle/exception/GlobalExceptionHandler.class
 com/candle/Application.class
 com/candle/service/CandleAggregator.class
 com/candle/model/BidAskEvent.class
